@@ -8,4 +8,9 @@
     <link rel="stylesheet" href="assets/css/bootstrap5.min.css">
     <link rel="shortcut icon" href="assets/img/logo.png">
     <link rel="stylesheet" href="assets/fontawsome/css/all.css">
+
+    <!-- Dashboard headers -->
+    <link rel="stylesheet" href="../assets/css/bootstrap5.min.css">
+    <link rel="shortcut icon" href="../assets/img/logo.png">
+    <link rel="stylesheet" href="../assets/fontawsome/css/all.css">
 </head>

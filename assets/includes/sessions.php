@@ -17,7 +17,7 @@
    function errorMessage(){
     if (isset($_SESSION['errorMessage'])) {
         
-        $message = "<div class=\"alert rounded-0 text-center fw-bold alert-danger text-danger alert-dismissible fade show\" role=\"alert\">";
+        $message = "<div class=\"alert rounded-0 text-center text-light fw-bold bg-danger text-danger alert-dismissible fade show\" role=\"alert\">";
         $message .= htmlentities($_SESSION['errorMessage']);
         $message .= " <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
                     </div>";
@@ -25,4 +25,11 @@
 
         return $message;
     }
+   }
+
+   function auth(){
+            //  If session is not set head to authentication
+       if (!isset($_SESSION['id'])) {
+           header('Location: ../authentication');
+       }
    }
