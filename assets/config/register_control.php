@@ -19,6 +19,7 @@
         $password = $_POST['password'];
         $cpass = $_POST['cpass'];
         $date = date('Y-m-d h:i:s');
+        $role = 'user';
         echo $date;
 
         if (strlen($password) <= 6) {
@@ -33,13 +34,13 @@
             $password = password_hash($password, PASSWORD_DEFAULT);
             
             // Prepare Statement
-            $sql = "INSERT INTO users(first_name,last_name,dob,email,phone,user_password,date_created) VALUES(?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO users(first_name,last_name,dob,email,phone,user_password,user_role,date_created) VALUES(?,?,?,?,?,?,?,?)";
             // Initilise Connection to database
             $stmt = mysqli_stmt_init($connectDB);
             // Prepare the statemt 
             mysqli_stmt_prepare($stmt,$sql);
             // Bind parameters
-            mysqli_stmt_bind_param($stmt,'sssssss',$firstName,$lastName,$dob,$email,$phone,$password,$date);
+            mysqli_stmt_bind_param($stmt,'ssssssss',$firstName,$lastName,$dob,$email,$phone,$password,$role,$date);
 
             // Execute the statement
             $execute = mysqli_stmt_execute($stmt);
