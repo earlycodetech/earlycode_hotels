@@ -6,43 +6,10 @@
     
 ?>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand text-uppercase fw-bold" href="index">
-        <img src="../assets/img/logo.png" alt="" height="50px"> Early Code Hotels
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="../assets/config/logout.php" class="nav-link">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include '../assets/includes/dashboard-nav.php'; ?>
 
 
-<section>
+<section class="mt-3">
   <?php if($_SESSION['role'] != 'admin'){
       echo successMessage(); echo errorMessage();
     ?>
@@ -66,7 +33,10 @@
               </select>
                 <input type="number" name="numRoom" placeholder="Number of Rooms" class="form-control mb-3" required>
                 <label>Date and Time of Check In</label>
-                <input type="datetime-local" name="checkinTime" placeholder="" class="form-control mb-3" required>
+                <input type="datetime-local" name="bookDate" placeholder="" class="form-control mb-3" required>
+
+                <label>Date and Time of Check Out</label>
+                <input type="datetime-local" name="checkOut" placeholder="" class="form-control mb-3" required>
 
                 <button type="submit" name="book" class="btn btn-primary">Book</button>
               </form>
@@ -104,6 +74,54 @@
               </div>
             </div>
           </div>
+       </div>
+
+       <div class="card mx-auto p-3 mt-4 shadow-lg">
+         <div class="table-responsive mt-3">
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Full Name</th>
+                  <th scope="col">Booked Room</th>
+                  <th scope="col">Volume</th>
+                  <th scope="col">Check In</th>
+                  <th scope="col">Check Out</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">...</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $sql = "SELECT * FROM bookings ORDER BY id DESC LIMIT 0,2";
+                  $query = mysqli_query($connectDB,$sql);
+                  while ($row = mysqli_fetch_assoc($query)) {
+                ?>
+                <tr>
+                  <td><?php echo $row['full_name']; ?></td>
+                  <td><?php echo $row['booked_room']; ?></td>
+                  <td><?php echo $row['no_of_rooms']; ?></td>
+                  <td><?php echo $row['date_booked']; ?></td>
+                  <td><?php echo $row['check_out']; ?></td>
+                  <td><?php echo $row['booking_status']; ?></td>
+                  <td>
+                    <a href="" class="btn btn-primary btn-sm">
+                      <i class="fas fa-check"></i>
+                    </a>
+                    <a href="" class="btn btn-secondary btn-sm">
+                      <i class="fas fa-eject"></i>
+                    </a>
+                    <a href="" class="btn btn-warning btn-sm">
+                      <i class="fas fa-times"></i>
+                    </a>
+                    <a href="" class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+         </div>
        </div>
     </div>
    <?php } ?>

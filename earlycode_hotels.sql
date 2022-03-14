@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2022 at 02:02 PM
+-- Generation Time: Mar 14, 2022 at 03:43 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -39,6 +39,14 @@ CREATE TABLE `bookings` (
   `date_booked` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `roomid`, `userid`, `full_name`, `booked_room`, `no_of_rooms`, `check_out`, `booking_status`, `date_booked`) VALUES
+(2, '1', '2', 'Andak Shipping', 'Deluxe Rooms', '3', '2022-03-23 12:00:00', 'pending..', '2022-03-21 16:56:00'),
+(3, '1', '3', 'Emmanuel Graham', 'Deluxe Rooms', '7', '2022-03-18 15:16:00', 'pending..', '2022-03-15 15:16:00');
+
 -- --------------------------------------------------------
 
 --
@@ -58,8 +66,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `room_name`, `room_stock`, `price`, `date_created`) VALUES
-(1, 'Deluxe Rooms', '2', '150000', '2022-03-10'),
-(3, 'Single Rooms', '3', '10000', '2022-03-10');
+(1, 'Deluxe Rooms', '0', '150000', '2022-03-10'),
+(3, 'Single Rooms', '10', '10000', '2022-03-10'),
+(4, 'Presidential Suite', '5', '1000000', '2022-03-14');
 
 -- --------------------------------------------------------
 
@@ -85,7 +94,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `dob`, `email`, `phone`, `user_password`, `user_role`, `date_created`) VALUES
 (1, 'Chris', 'Graham', '2022-03-10', 'admin@gmail.com', '+2348124423122', '$2y$10$YOoxZH.SINOsBM8G2qS75eFw6TnFHWyUhNCWVezetEPUQRacCXhWq', 'admin', '2022-03-09 03:10:46'),
-(2, 'Andak', 'Shipping', '2022-03-10', 'tester@gmail.com', '+495402058450', '$2y$10$Tvp1j2Gfa.AttCME.EMvbOXPa2nEJfrgK4.jANjvMSBAKtNgLXqfO', 'user', '2022-03-10 12:16:37');
+(2, 'Andak', 'Shipping', '2022-03-10', 'tester@gmail.com', '+495402058450', '$2y$10$Tvp1j2Gfa.AttCME.EMvbOXPa2nEJfrgK4.jANjvMSBAKtNgLXqfO', 'user', '2022-03-10 12:16:37'),
+(3, 'Emmanuel', 'Graham', '2022-03-14', 'emmanuelodobo10@gmail.com', '08142237388', '$2y$10$hMKFv0t/oK99YzcCet3k6e427fU2oOZGtfVEAzogdfYJSGxGzfMkm', 'user', '2022-03-14 03:16:12');
 
 --
 -- Indexes for dumped tables
@@ -117,19 +127,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

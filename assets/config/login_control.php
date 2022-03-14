@@ -29,6 +29,7 @@
             if (password_verify($password,$returnedPassword)) {
                 // Set the session of ID
                $_SESSION['id'] = $row['id'];
+               $_SESSION['full_name'] = $row['first_name']." ".$row['last_name'];
                $_SESSION['role'] = $row['user_role'];
                header('Location: ../../tunnel/dashboard');
             }else{
