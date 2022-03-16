@@ -10,44 +10,9 @@
 
 
 <section class="mt-3">
-  <?php if($_SESSION['role'] != 'admin'){
-      echo successMessage(); echo errorMessage();
-    ?>
-      <div class="container">
-          <div class="card p-2 mx-auto shadow" style="max-width: 600px;">
-              <form action="../assets/config/insert_control.php" method="post">
+  <?php      echo successMessage(); echo errorMessage(); ?>
 
-              <select name="roomType" class="form-select mb-3" required>
-                <option disabled selected>Select a Room</option>
-                <?php 
-                // Select All Data From  The table of rooms
-                  $sql = "SELECT * FROM rooms"; 
-                  $query = mysqli_query($connectDB,$sql);
-                  // Use a loop to fetch and echo data repetitively
-                  while ($row = mysqli_fetch_assoc($query)) {
-                ?>
-
-                <!-- Number Format (4 parameters, number,amount of decimals, decimal seperator,thousands seperator ) -->
-                  <option value="<?php echo $row['id'] ?>"><?php echo $row['room_name']." ₦".number_format($row['price'],2,'.',','); ?></option>
-                <?php } ?>
-              </select>
-                <input type="number" name="numRoom" placeholder="Number of Rooms" class="form-control mb-3" required>
-                <label>Date and Time of Check In</label>
-                <input type="datetime-local" name="bookDate" placeholder="" class="form-control mb-3" required>
-
-                <label>Date and Time of Check Out</label>
-                <input type="datetime-local" name="checkOut" placeholder="" class="form-control mb-3" required>
-
-                <button type="submit" name="book" class="btn btn-primary">Book</button>
-              </form>
-          </div>
-      </div>
-    <?php }else { 
-          echo successMessage(); echo errorMessage();
-      ?>
-
-      <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <div class="container">
+ <div class="container">
        <div class="d-flex justify-content-between">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -93,7 +58,7 @@
               </thead>
               <tbody>
                 <?php
-                  $sql = "SELECT * FROM bookings WHERE booking_status = 'pending..' ORDER BY id DESC LIMIT 0,2";
+                  $sql = "SELECT * FROM bookings WHERE booking_status = 'Checked In' ORDER BY id DESC LIMIT 0,2";
                   $query = mysqli_query($connectDB,$sql);
                   while ($row = mysqli_fetch_assoc($query)) {
                 ?>
@@ -105,15 +70,15 @@
                   <td><?php echo $row['check_out']; ?></td>
                   <td><?php echo $row['booking_status']; ?></td>
                   <td>
-                    <a href="../assets/config/param?check_in=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm">
+                    <!-- <a href="../assets/config/param?check_in=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm">
                       <i class="fas fa-check"></i>
-                    </a>
+                    </a> -->
                     <a href="../assets/config/param?check_out=<?php echo $row['id'] ?>" class="btn btn-secondary btn-sm">
                       <i class="fas fa-eject"></i>
                     </a>
-                    <a href="" class="btn btn-warning btn-sm">
+                    <!-- <a href="" class="btn btn-warning btn-sm">
                       <i class="fas fa-times"></i>
-                    </a>
+                    </a> -->
                     <a href="" class="btn btn-danger btn-sm">
                       <i class="fas fa-trash"></i>
                     </a>
@@ -125,7 +90,6 @@
          </div>
        </div>
     </div>
-   <?php } ?>
 </section>
 
 
