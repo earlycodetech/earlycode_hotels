@@ -20,9 +20,9 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="checkin">Checked In</a></li>
-            <li><a class="dropdown-item" href="#">Checked Out</a></li>
+            <li><a class="dropdown-item" href="checkout">Checked Out</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Cancled</a></li>
+            <li><a class="dropdown-item" href="canceled">Canceled</a></li>
           </ul>
         </li>
         <?php } ?>

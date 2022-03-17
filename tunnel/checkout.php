@@ -58,7 +58,7 @@
               </thead>
               <tbody>
                 <?php
-                  $sql = "SELECT * FROM bookings WHERE booking_status = 'Checked In' ORDER BY id DESC LIMIT 0,2";
+                  $sql = "SELECT * FROM bookings WHERE booking_status = 'Checked Out' ORDER BY id DESC LIMIT 0,2";
                   $query = mysqli_query($connectDB,$sql);
                   while ($row = mysqli_fetch_assoc($query)) {
                 ?>
@@ -66,20 +66,14 @@
                   <td><?php echo $row['full_name']; ?></td>
                   <td><?php echo $row['booked_room']; ?></td>
                   <td><?php echo $row['no_of_rooms']; ?></td>
-                  <td><?php 
-                    $date = date_create($row['date_booked']);
-                    echo date_format($date,'D d, M. Y g:i A');
-                  ?></td>
-                  <td><?php
-                    $date = date_create($row['check_out']);
-                    echo date_format($date,'D d, M. Y g:i A');
-                  ?></td>
+                  <td><?php echo $row['date_booked']; ?></td>
+                  <td><?php echo $row['check_out']; ?></td>
                   <td><?php echo $row['booking_status']; ?></td>
                   <td>
                     <!-- <a href="../assets/config/param?check_in=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm">
                       <i class="fas fa-check"></i>
                     </a> -->
-                    <a href="../assets/config/param?check_out=<?php echo $row['id'] ?>&rooms=<?php echo $row['no_of_rooms']; ?>&room_name=<?php echo $row['booked_room']; ?>" class="btn btn-secondary btn-sm">
+                    <a href="../assets/config/param?check_out=<?php echo $row['id'] ?>" class="btn btn-secondary btn-sm">
                       <i class="fas fa-eject"></i>
                     </a>
                     <!-- <a href="" class="btn btn-warning btn-sm">
