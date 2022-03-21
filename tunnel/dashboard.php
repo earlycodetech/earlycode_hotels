@@ -41,6 +41,29 @@
                 <button type="submit" name="book" class="btn btn-primary">Book</button>
               </form>
           </div>
+
+          <div class="card p-2 mx-auto shadow" style="max-width: 600px;">
+            <img src="../assets/img/prof_pic/<?php
+              $id = $_SESSION['id'];
+                  $sql = "SELECT * FROM users WHERE id = '$id'";
+                  $query = mysqli_query($connectDB,$sql);
+                  $row = mysqli_fetch_assoc($query);
+                  $img = $row['user_pic'];
+
+                  if (empty($img)) {
+                    echo 'user.png';
+                  }else{
+                    echo "$img?".mt_rand();
+                  }
+            ?>" alt="" class="rounded-circle d-block mx-auto" style="width: 300px; height:
+            300px;">
+            <!-- Always set the enctype attribute when adding file type to your form -->
+              <form action="../assets/config/upload_system.php" method="post" enctype="multipart/form-data">
+
+                  <input type="file" name="file" class="form-control">
+                <button type="submit" name="uploadPic" class="btn btn-primary">Upload</button>
+              </form>
+          </div>
       </div>
     <?php }else { 
           echo successMessage(); echo errorMessage();

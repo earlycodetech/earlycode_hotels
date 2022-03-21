@@ -20,9 +20,15 @@
         $cpass = $_POST['cpass'];
         $date = date('Y-m-d h:i:s');
         $role = 'user';
-        echo $date;
+        
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $query = mysqli_query($connectDB,$sql);
 
-        if (strlen($password) <= 6) {
+        if (mysqli_num_rows($query) > 0) {
+            $_SESSION['errorMessage'] = "This email already exists";
+            header("Location: ../../authentication");
+        }
+        elseif (strlen($password) <= 6) {
             $_SESSION['errorMessage'] = "Password must be 8 characters and above..";
             header("Location: ../../authentication");
         }
