@@ -51,8 +51,21 @@
             // Execute the statement
             $execute = mysqli_stmt_execute($stmt);
             if ($execute) {
-                $_SESSION['successMessage'] = "Registration was successfull, please log in..";
-                header("Location: ../../authentication");
+                $to = $email;
+                $subject = "Welcome Message";
+                $message = "Thank you for Choosing Earlycode Hotels Please login and book a room";
+                $message = wordwrap($message,150,"\r\n");
+                $headers = "From: Earlycode-Hotels <support@earlycode-hotels.com>";
+
+                $send = mail($to,$subject,$message,$headers);
+                if ($send) {
+                    $_SESSION['successMessage'] = "Registration was successfull, please log in..";
+                    header("Location: ../../authentication");
+                }else{
+                    $_SESSION['errorMessage'] = "Something went wrong..";
+                    header("Location: ../../authentication");
+                }
+               
             }else{
                 $_SESSION['errorMessage'] = "Something went wrong..";
                 header("Location: ../../authentication");

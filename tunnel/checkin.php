@@ -85,8 +85,38 @@
                     <!-- <a href="" class="btn btn-warning btn-sm">
                       <i class="fas fa-times"></i>
                     </a> -->
-                    <a href="" class="btn btn-danger btn-sm">
+                    <!-- Delete Button -->
+                    <a type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete">
                       <i class="fas fa-trash"></i>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog w-25">
+                          <div class="modal-content">
+                            <div class="modal-header text-dark">
+                              <h5>Do you want to <span class="fs-bold fs-1 text-danger">DELETE</span> this Reservation?</h5>
+                            </div>
+                            <div class="modal-body">
+                              <div class="float-start">
+                                <a id="yes" href="../assets/config/param?delete=<?php echo $row['id'] ?>&rooms=<?php echo $row['no_of_rooms']; ?>&room_name=<?php echo $row['booked_room']; ?>" class="btn btn-lg">Yes</a>
+                              </div>
+                            
+                            <button type="button" class="btn float-end btn-danger btn-lg" data-bs-dismiss="modal">No</button>
+                            </div>
+                          </div>
+                          <style>
+                            #cancled a{
+                              background-color: transparent !important;
+                              border: none;
+                            }
+                            #yes{
+                              background-color: lightgreen !important;
+                              color: white;
+                              text-decoration: none;
+                            }
+                          </style>
+                        </div>
+                      </div>
                     </a>
                   </td>
                 </tr>
