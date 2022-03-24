@@ -12,6 +12,7 @@
             <form action="assets/config/login_control.php" method="post">
                 <input type="email" name="email" placeholder="Email*"  class="form-control mb-3">
                 <input type="password" name="password" placeholder="Password*"  class="form-control mb-2">
+                <a href="forgot" class="nav-link text-primary">Forgot Password?</a>
                 <a class="nav-link text-dark float-end" onclick="change()">
                    Click here to Register
                 </a>
